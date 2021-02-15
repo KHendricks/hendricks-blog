@@ -34,7 +34,6 @@ const highlighted = [
   "Alaska",
   "Colorado",
   "Virginia",
-  "Washington",
 ];
 
 const MapChart = () => {
