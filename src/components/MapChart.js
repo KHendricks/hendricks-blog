@@ -14,6 +14,9 @@ import statesData from "./data/states.json";
 import Button from "@material-ui/core/Button";
 import Tooltip from "@material-ui/core/Tooltip";
 
+import { useHistory } from "react-router-dom";
+import { connect } from "react-redux";
+
 const geoJson = statesData;
 
 const offsets = {
@@ -36,10 +39,18 @@ const highlighted = [
   "Virginia",
 ];
 
-const MapChart = () => {
+const MapChart = (props) => {
+  let history = useHistory();
+
+  function handleClick() {
+    history.push({
+      pathname: "/states",
+    });
+  }
+
   return (
     <ComposableMap
-      style={{ height: 1000, width: 1000 }}
+      style={{ height: 700, width: 1000 }}
       projection="geoAlbersUsa"
     >
       <PatternLines
@@ -66,9 +77,12 @@ const MapChart = () => {
                         ? "url('#lines')"
                         : "#99e6b3"
                     }
-                    onClick={() =>
-                      console.log("clicked: ", geo.properties.name)
-                    }
+                    onClick={() => {
+                      if (highlighted.includes(geo.properties.name)) {
+                        props.newUsaState(geo.properties.name);
+                        handleClick();
+                      }
+                    }}
                   />
                 </>
               );
@@ -108,4 +122,18 @@ const MapChart = () => {
   );
 };
 
-export default MapChart;
+const mapStateToProps = (state) => {
+  return {
+    // Example:
+    usaState: state.usaState,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    newUsaState: (userInput) =>
+      dispatch({ type: "US_STATE", userInput: userInput }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapChart);

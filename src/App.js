@@ -2,7 +2,8 @@ import React from "react";
 
 import Home from "./routes/Home.js";
 import States from "./routes/States.js";
-import NavigationBar from "./components/NavigationBar";
+import NavigationBar from "./components/NavigationBar.js";
+import Footer from "./components/Footer.js";
 
 // Redux
 import { Provider } from "react-redux";
@@ -25,6 +26,7 @@ const App = () => {
           <Route path="/home" component={Home} />
           <Route path="/states" component={States} />
         </Switch>
+        <Footer />
       </Router>
     </Provider>
   );

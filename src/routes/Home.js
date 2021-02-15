@@ -51,13 +51,24 @@ const Home = () => {
         </Typography>
       </Box>
 
+      <Box p={1}>
+        <Typography
+          variant="h6"
+          align="center"
+          style={styles.introductionTextStyle}
+        >
+          Click on any state with stripes to see the adventures of where we have
+          been!
+        </Typography>
+      </Box>
+
       <Box
         display="flex"
-        alignItems="center"
+        alignItems="flex-start"
         p={1}
         m={1}
         flexDirection="row"
-        justifyContent="space-around"
+        justifyContent="center"
         // style={{ background: "pink" }}
       >
         <MapChart />

@@ -1,15 +1,15 @@
 import { createStore } from "redux";
 
 const initialState = {
-  text: "Random",
+  usaState: "",
 };
 
-const NEW_TEXT = "NEW_TEXT";
+const US_STATE = "US_STATE";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case NEW_TEXT:
-      return { ...state, text: action.userInput };
+    case US_STATE:
+      return { ...state, usaState: action.userInput };
     default:
       return state;
   }
